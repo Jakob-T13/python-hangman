@@ -1,24 +1,28 @@
 import random
 
-file_path = (r'words.txt')
-words_file = open(file_path, "r")
-words_list = words_file.readlines()
-words_file.close()
+file_path = (r'words.txt')          #path for file with words
+words_file = open(file_path, "r")   #open words file with read-only permissions
+words_list = words_file.readlines() #read words into a list
+words_file.close()                  #close the file when done
 
-for x in range(len(words_list)-1):
+#words_list = ["APPLE", "ORANGE"]   #debug word list
+
+for x in range(len(words_list)-1):      #strip newlines from words
     words_list[x]=words_list[x].strip()
 
 def GetRandomWord(lst):     #Choose a random word from a list of strings and remove it from the list
-    word_index = random.randint(0,len(lst)-1)
-    returnval = lst[word_index]
-    del(words_list[word_index])
+    word_index = random.randint(0,len(lst)-1)   #random int for index of word to be chosen
+    returnval = lst[word_index]                 #word to be returned
+    del(words_list[word_index])                 #delete the word from the original list
     return returnval
     
     
 def GameLoop():
     is_running = True
-    wins = 0
-    losses = 0
+    record = {
+        "wins": 0,
+        "losses": 0
+    }
     while is_running:
         #game setup
         guesses = 0
@@ -58,12 +62,12 @@ def GameLoop():
                 
         #game end
         if game_won:
-            wins += 1
+            record["wins"] += 1
             print("Congratulations, you won! The word was '"+answer+"'.")
         else:
-            losses += 1
+            record["losses"] += 1
             print("Sorry, you lost. The word was '"+answer+"'.")
-        print("You have won "+str(wins)+" times and lost "+str(losses)+" times.")
+        print("You have won "+str(record["wins"])+" times and lost "+str(record["losses"])+" times.")
         if words_list != []:
             play_again = input("Would you like to play again? (y/n) ")
             if play_again != "y":
