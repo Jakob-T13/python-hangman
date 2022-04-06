@@ -4,3 +4,21 @@ words_list = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorad
 
 def GetRandomWord(lst):     #Choose a random word from a list of strings
     return lst[random.randint(0,len(lst)-1)]
+    
+def GameLoop():
+    #game setup
+    guesses = 0
+    #answer = upper(GetRandomWord(words_list))
+    answer = "TEXAS"    #static answer for testing
+    display_string = []
+    for i in answer:
+        display_string += "_"
+    guess_letters = []
+    game_won = False
+    
+    #game loop
+    while guesses < 7 and not game_won:
+        print(str(display_string))
+        input_guess = str(input("Please guess a letter or the entire word: "))
+        if len(input_guess) == 1:
+            
