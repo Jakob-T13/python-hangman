@@ -18,8 +18,8 @@ def GameLoop():
     
     #game loop
     while guesses < 7 and not game_won:
-        print(str(display_string))
-        input_guess = str(upper(input("Please guess a letter or the entire word: ")))
+        print(' '.join(display_string))
+        input_guess = str(input("Please guess a letter or the entire word: ")).upper()
         if len(input_guess) == 1:
             if input_guess in guess_letters:
                 print("You've already guessed that letter. Try again.")
@@ -30,16 +30,18 @@ def GameLoop():
                             display_string[n] = input_guess
                 else:
                     guesses += 1
-                    print("'"+input_guess+"' is not in the word. You have "+(7-guesses)+" wrong guesses remaining.")
+                    print("'"+input_guess+"' is not in the word. You have "+str(7-guesses)+" wrong guesses remaining.")
         else:
             if input_guess == answer:
                 game_won = True
             else:
                 guesses += 1
-                print("'"+input_guess+"' is not the correct answer. You have "+(7-guesses)+" wrong guesses remaining.")
+                print("'"+input_guess+"' is not the correct answer. You have "+str(7-guesses)+" wrong guesses remaining.")
                 
     #game end
     if game_won:
         print("Congratulations, you won!")
     else:
         print("Sorry, you lost. The word was '"+answer+"'.")
+        
+GameLoop()
