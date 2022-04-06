@@ -62,28 +62,28 @@ def GameLoop():         #the actual game
                     else:
                         guesses += 1        #add to count of incorrect guesses
                         print("'"+input_guess+"' is not in the word. You have "+str(7-guesses)+" wrong guesses remaining.")     #tell the user they're wrong
-            elif len(input_guess) > 1:
+            elif len(input_guess) > 1:      #if input length is greater than 1, it's an attempt at the word
                 if input_guess == answer:   #if user guesses the word correctly
-                    game_won = True
+                    game_won = True         #game is won
                 else:
-                    guesses += 1
-                    print("'"+input_guess+"' is not the correct answer. You have "+str(7-guesses)+" wrong guesses remaining.")
+                    guesses += 1            #add to count of incorrect guesses
+                    print("'"+input_guess+"' is not the correct answer. You have "+str(7-guesses)+" wrong guesses remaining.")  #tell the user they're wrong
                 
         #game end
-        if game_won:
-            record["wins"] += 1
-            print("Congratulations, you won! The word was '"+answer+"'.")
+        if game_won:    #if the game was won
+            record["wins"] += 1     #increment win record
+            print("Congratulations, you won! The word was '"+answer+"'.")   #tell the user they won
         else:
-            record["losses"] += 1
-            print(game_states[guesses])
-            print("Sorry, you lost. The word was '"+answer+"'.")
-        print("You have won "+str(record["wins"])+" times and lost "+str(record["losses"])+" times.")
-        if words_list != []:
-            play_again = input("Would you like to play again? (y/n) ")
-            if play_again != "y":
-                is_running = False
+            record["losses"] += 1   #increment loss record
+            print(game_states[guesses])     #print final game state
+            print("Sorry, you lost. The word was '"+answer+"'.")    #tell the user they lost
+        print("You have won "+str(record["wins"])+" times and lost "+str(record["losses"])+" times.")   #display win/loss record
+        if words_list != []:    #if the word list isn't empty
+            play_again = input("Would you like to play again? (y/n) ")  #ask the player to play again
+            if play_again != "y":   #if they say anything besides y(es):
+                is_running = False  #quit the game
         else:
-            print("You've played with all the words in the list!")
-            is_running = False
+            print("You've played with all the words in the list!")  #tell the user they've used all the words
+            is_running = False  #quit the game
 
 GameLoop()
