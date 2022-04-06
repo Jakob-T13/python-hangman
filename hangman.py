@@ -2,8 +2,7 @@ import random
 
 file_path = (r'words.txt')
 words_file = open(file_path, "r")
-#words_list = words_file.readlines()
-words_list = ["APPLE", "ORANGE"]
+words_list = words_file.readlines()
 words_file.close()
 
 for x in range(len(words_list)-1):
