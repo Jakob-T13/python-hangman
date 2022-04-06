@@ -9,7 +9,7 @@ def GameLoop():
     #game setup
     guesses = 0
     #answer = upper(GetRandomWord(words_list))
-    answer = "TEXAS"    #static answer for testing
+    answer = "MINNESOTA"    #static answer for testing
     display_string = []
     for i in answer:
         display_string += "_"
@@ -29,6 +29,8 @@ def GameLoop():
                     for n in range(len(answer)):
                         if answer[n] == input_guess:
                             display_string[n] = input_guess
+                    if '_' not in display_string:
+                        game_won = True
                 else:
                     guesses += 1
                     print("'"+input_guess+"' is not in the word. You have "+str(7-guesses)+" wrong guesses remaining.")
@@ -41,7 +43,7 @@ def GameLoop():
                 
     #game end
     if game_won:
-        print("Congratulations, you won!")
+        print("Congratulations, you won! The word was '"+answer+"'.")
     else:
         print("Sorry, you lost. The word was '"+answer+"'.")
         
