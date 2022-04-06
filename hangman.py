@@ -4,12 +4,19 @@ file_path = (r'words.txt')
 words_file = open(file_path, "r")
 words_list = words_file.readlines()
 words_file.close()
+wins = 0
+losses = 0
+chosen_words = []
 
 for x in range(len(words_list)-1):
     words_list[x]=words_list[x].strip()
 
 def GetRandomWord(lst):     #Choose a random word from a list of strings
-    return lst[random.randint(0,len(lst)-1)]
+    word_index = random.randint(0,len(lst)-1)
+    returnval = lst[word_index]
+    del(words_list[word_index])
+    return returnval
+    
     
 def GameLoop():
     #game setup
@@ -50,8 +57,18 @@ def GameLoop():
                 
     #game end
     if game_won:
+        wins += 1
         print("Congratulations, you won! The word was '"+answer+"'.")
     else:
+        losses += 1
         print("Sorry, you lost. The word was '"+answer+"'.")
-        
+
 GameLoop()
+       
+print("You have won "+str(wins)+" times and lost "+str(losses)+" times.")
+play_again = input("Would you like to play again? (y/n) ")
+if play_again == "y":
+    GameLoop()
+else:
+    exit()
+        
