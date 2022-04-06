@@ -24,6 +24,7 @@ def GameLoop():
             if input_guess in guess_letters:
                 print("You've already guessed that letter. Try again.")
             else:
+                guess_letters += input_guess
                 if input_guess in answer:
                     for n in range(len(answer)):
                         if answer[n] == input_guess:
