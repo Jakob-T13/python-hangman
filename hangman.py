@@ -1,6 +1,12 @@
 import random
 
-words_list = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "NewHampshire", "NewJersey", "NewMexico", "NewYork", "NorthCarolina", "NorthDakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "RhodeIsland", "SouthCarolina", "SouthDakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "WestVirginia", "Wisconsin", "Wyoming"]
+file_path = (r'words.txt')
+words_file = open(file_path, "r")
+words_list = words_file.readlines()
+words_file.close()
+
+for x in range(len(words_list)-1):
+    words_list[x]=words_list[x].strip()
 
 def GetRandomWord(lst):     #Choose a random word from a list of strings
     return lst[random.randint(0,len(lst)-1)]
@@ -8,8 +14,9 @@ def GetRandomWord(lst):     #Choose a random word from a list of strings
 def GameLoop():
     #game setup
     guesses = 0
-    #answer = upper(GetRandomWord(words_list))
-    answer = "MINNESOTA"    #static answer for testing
+    answer = GetRandomWord(words_list).upper()
+    #answer = "MINNESOTA"    #static answer for testing
+    print(answer) #print for debug
     display_string = []
     for i in answer:
         display_string += "_"
