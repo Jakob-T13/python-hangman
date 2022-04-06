@@ -7,6 +7,14 @@ words_file.close()                  #close the file when done
 
 #words_list = ["APPLE", "ORANGE"]   #debug word list
 
+game_states = []
+for i in range(7+1):
+    state_path = str("state"+str(i)+".txt")
+    state_file = open(state_path, "r")
+    state_txt = state_file.read()
+    game_states.append(state_txt)
+    state_file.close()
+
 for x in range(len(words_list)-1):      #strip newlines from words
     words_list[x]=words_list[x].strip()
 
@@ -37,6 +45,7 @@ def GameLoop():
     
         #game loop
         while guesses < 7 and not game_won:
+            print(game_states[guesses])
             print(' '.join(display_string))
             input_guess = str(input("Please guess a letter or the entire word: ")).upper()
             if len(input_guess) == 1:
@@ -66,6 +75,7 @@ def GameLoop():
             print("Congratulations, you won! The word was '"+answer+"'.")
         else:
             record["losses"] += 1
+            print(game_states[guesses])
             print("Sorry, you lost. The word was '"+answer+"'.")
         print("You have won "+str(record["wins"])+" times and lost "+str(record["losses"])+" times.")
         if words_list != []:
