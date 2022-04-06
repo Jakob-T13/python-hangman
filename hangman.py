@@ -2,7 +2,8 @@ import random
 
 file_path = (r'words.txt')
 words_file = open(file_path, "r")
-words_list = words_file.readlines()
+#words_list = words_file.readlines()
+words_list = ["APPLE", "ORANGE"]
 words_file.close()
 
 for x in range(len(words_list)-1):
@@ -70,5 +71,6 @@ def GameLoop():
                 is_running = False
         else:
             print("You've played with all the words in the list!")
+            is_running = False
 
 GameLoop()
