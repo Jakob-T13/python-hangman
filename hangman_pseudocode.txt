@@ -1,0 +1,48 @@
+Define list of words
+
+ChooseRandomWord:
+	choose a random word from the list
+	return the chosen word
+	
+GameLoop:
+	#game setup
+	guesses = 7
+	answer = ChooseRandomWord
+	display_string = ""
+	for n in len(answer):
+		display_string += '_'
+	guess_letters = []
+	game_won = False
+
+	#game loop
+	while (guesses > 0 and not game_won):
+		print display_string
+		prompt user to guess a letter or the word
+		input = (user input)
+		if len(input) == 1:
+			if input not in guess_letters:
+				guess_letters += input
+				if input in answer:
+					replace _s in display_string with input letter
+				else:
+					guesses -= 1
+					print "'<input>' is not in this word. You have <guesses> incorrect guesses remaining."
+			else:
+				print "You've already guessed that letter. Try again."
+		else if input length > 1:
+			if input = answer:
+				game_won = True
+			else:
+				guesses -= 1
+				print "<input> is not the correct word. You have <guesses> incorrect guesses remaining."
+		else:
+			print "Invalid input. Please try again."
+	
+	#game results
+	if game_won:
+		print "Congratulations, you won!"
+	else:
+		print "You lose! The word was <answer>"
+
+
+#may or may not try making a little ASCII art hangman to represent remaining guesses
